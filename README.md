@@ -14,7 +14,7 @@ We are currently in **Phase 1: Foundation**. See our [Roadmap](./roadmap.md) for
 - **Phase 4: Agent Core** - LangGraph-driven negotiation strategy.
 - **Phase 5: War Room UI** - The interactive frontend dashboard.
 
-## Architecture: "The Negotiator's Hub"
+## Architecture:
 
 The system is a **Modular Monolith** designed for extensibility:
 

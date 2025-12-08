@@ -11,7 +11,20 @@ class Settings(BaseSettings):
     POSTGRES_DB: str = "negotiator"
     SQLALCHEMY_DATABASE_URI: str | None = None
 
-    # OpenAI / AI Logic
+    # LLM Settings
+    LLM_PROVIDER: str = "aws"  # aws or mistral
+    
+    # AWS Bedrock
+    AWS_REGION: str = "eu-central-1"
+    AWS_BEDROCK_MODEL_ID: str = "anthropic.claude-3-5-sonnet-20240620-v1:0"
+    AWS_ACCESS_KEY_ID: str | None = None
+    AWS_SECRET_ACCESS_KEY: str | None = None
+
+    # Mistral AI
+    MISTRAL_API_KEY: str | None = None
+    MISTRAL_MODEL_ID: str = "mistral-large-latest"
+
+    # OpenAI (Legacy/Global)
     OPENAI_API_KEY: str = ""
 
     class Config:

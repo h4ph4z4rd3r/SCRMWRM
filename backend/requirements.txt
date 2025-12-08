@@ -5,3 +5,5 @@ asyncpg
 python-dotenv
 pydantic-settings
 pgvector
+boto3>=1.34.0
+mistralai>=0.1.0
