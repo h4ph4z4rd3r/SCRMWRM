@@ -1,0 +1,44 @@
+supplier_meta:
+  id: "SUP-9982"
+  name: "Apex Facilities Ltd."
+  headquarters: "Chicago, IL, USA"
+  tax_id: "US-33-998877"
+
+relationship_status:
+  tier: "Strategic"
+  status: "Active"
+  contract_expiry: "2025-12-31"
+
+financial_health:
+  dnb_score: 85
+  revenue: "$450M"
+  trend: "Stable"
+
+performance_scorecard:
+  period: "Q3 2024"
+  overall_score: 4.2
+  metrics:
+    on_time_completion: 
+      score: 4.5
+      comment: "Excellent responsiveness to urgent maintenance calls."
+    safety_compliance:
+      score: 4.8
+      comment: "Zero lost-time incidents."
+    cost_management:
+      score: 3.5
+      comment: "Over-budget on HVAC retrofitting project due to parts markup."
+    innovation:
+      score: 4.0
+      comment: "Proactive in suggesting energy-saving sensors."
+
+risk_profile:
+  cyber_risk: "Low (ISO 27001 Certified)"
+  geopolitical_risk: "Low (Domestic focus)"
+  reputational_risk: "Medium (Recent labor strike in Ohio branch)"
+
+active_incidents:
+  - id: "INC-2024-004"
+    type: "Compliance"
+    status: "Open"
+    description: "Audit finding: 3 technicians missing up-to-date electrical safety certs."
+    remediation_plan: "Apex to provide training logs by Feb 1st."

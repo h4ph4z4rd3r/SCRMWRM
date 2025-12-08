@@ -1,0 +1,37 @@
+policy_meta:
+  id: "SMS-STD-005"
+  name: "Supplier Management Standard"
+  version: "1.0"
+  owner: "Head of Procurement"
+
+lifecycle_stages:
+  - stage: "Onboarding"
+    requirements:
+      - "NDA signed before RFP"
+      - "New vendor form completed in SAP"
+      - "Risk tiering assessment complete"
+  
+  - stage: "Performance Management"
+    kpi_requirements:
+      - metric: "On-Time Delivery (OTD)"
+        target: ">95%"
+        breach_action: "Performance Improvement Plan (PIP)"
+      - metric: "Quality Defect Rate"
+        target: "<1%"
+        breach_action: "Immediate root cause analysis (RCA)"
+    
+  - stage: "Offboarding"
+    requirements:
+      - "Data destruction certificate required"
+      - "Access tokens revoked within 24 hours"
+
+classification:
+  strategic:
+    definition: "Critical to competitive advantage or >$5M spend"
+    meeting_cadence: "Quarterly Business Review (QBR) with Executive Sponsor"
+  preferred:
+    definition: "High volume or difficult to replace"
+    meeting_cadence: "Bi-annual review"
+  tactical:
+    definition: "Transactional, easy to replace"
+    meeting_cadence: "Exception-based only"

@@ -1,0 +1,42 @@
+policy_meta:
+  id: "TPRM-001"
+  name: "Global Third-Party Risk Management Policy"
+  version: "2.1"
+  owner: "Chief Risk Officer"
+  last_updated: "2024-01-15"
+
+scope:
+  - "All external suppliers, vendors, and partners"
+  - "Global operations including subsidiaries"
+
+risk_tolerance:
+  level: "Low-Medium"
+  statement: "We maintain a low tolerance for compliance and cybersecurity risks, and a medium tolerance for operational risks provided mitigation plans are in place."
+
+requirements:
+  cybersecurity:
+    - rule_id: "CYBER-01"
+      description: "Suppliers with access to PII must be SOC2 Type II or ISO 27001 certified."
+      severity: "High"
+    - rule_id: "CYBER-02"
+      description: "Any remote access to corporate networks must be via MFA and VPN."
+      severity: "Critical"
+  
+  compliance:
+    - rule_id: "COMP-01"
+      description: "Suppliers must screen all employees against global sanctions lists (OFAC, etc.) annually."
+      severity: "High"
+    - rule_id: "COMP-02"
+      description: "Anti-Bribery and Corruption (ABC) detailed questionnaire must be renewed every 2 years."
+      severity: "High"
+
+  financial:
+    - rule_id: "FIN-01"
+      description: "Suppliers with >$1M annual spend must provide audited financial statements."
+      severity: "Medium"
+
+assessment_frequency:
+  critical_suppliers: "Annual"
+  high_risk_suppliers: "Annual"
+  medium_risk_suppliers: "Bi-annual"
+  low_risk_suppliers: "Upon contract renewal"

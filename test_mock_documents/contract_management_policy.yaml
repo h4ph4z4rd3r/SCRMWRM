@@ -1,0 +1,32 @@
+policy_meta:
+  id: "CMP-009"
+  name: "Contract Management Policy"
+  version: "3.2"
+  owner: "General Counsel"
+
+contract_drafting:
+  standard_terms:
+    payment_terms: "Net 60 days standard, Net 45 for small business"
+    governing_law: "State of New York (US contracts) or England & Wales (International)"
+    liability_cap: "Must not exceed 2x annual contract value (ACV) unless approved by Legal"
+    indemnification: "Requires mutual indemnification for IP infringement"
+
+approval_workflow:
+  thresholds:
+    - amount: "<$50k"
+      approver: "Department Manager"
+    - amount: "$50k - $250k"
+      approver: "Director + Procurement Manager"
+    - amount: "$250k - $1M"
+      approver: "VP + Legal Review"
+    - amount: ">$1M"
+      approver: "CFO + General Counsel"
+
+signing_authority:
+  rules:
+    - "Only authorized signatories listed in the Delegation of Authority (DoA) matrix may sign."
+    - "Digital signatures (DocuSign) are preferred and legally binding."
+
+record_retention:
+  duration: "7 years after contract termination"
+  location: "Central Contract Repository (CCR)"

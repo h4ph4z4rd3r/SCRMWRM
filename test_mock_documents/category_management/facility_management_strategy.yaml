@@ -1,0 +1,28 @@
+document_meta:
+  type: "Category Strategy"
+  category: "Facilities Management (FM)"
+  period: "2025-2027"
+  region: "North America"
+
+strategic_objectives:
+  - "Consolidate fragmented vendor base (currently 40+) to 3-4 strategic partners."
+  - "Shift from Time & Materials (T&M) to Performance-Based pricing models."
+  - "Implement IoT auditing for energy efficiency (Target: 15% reduction in carbon footprint)."
+  - "Reduce category spend by 8-12% through consolidation and standardized SLAs."
+
+market_analysis:
+  trend_outlook: "Stable, but labor shortages driving up janitorial/maintenance costs by 5-7%."
+  supplier_power: "Medium - Fragmentation allows for competitive bidding."
+  buyer_power: "High - Large aggregated spend volume."
+
+sourcing_strategy:
+  preferred_model: "Integrated Facilities Management (IFM)"
+  target_suppliers:
+    - "Apex Facilities (Strong in technical maintenance)"
+    - "GlobalServices Corp (Strong in soft services/janitorial)"
+    - "GreenBuild Solutions (Niche focus on sustainability/energy)"
+
+key_risks:
+  - "Transition risk during vendor consolidation."
+  - "Regulatory changes in labor laws (wage increases)."
+  - "Safety incidents affecting brand reputation."
