@@ -3,7 +3,7 @@ from typing import List, Tuple
 from uuid import UUID
 from sqlmodel import select, Session
 from sqlalchemy import text as sa_text
-from app.models import ContractChunk
+from app.models import ContractChunk, PolicyChunk
 from app.llm import get_llm_client
 from app.database import get_session
 
@@ -102,6 +102,42 @@ class RAGService:
         
         stmt = select(ContractChunk).order_by(
             ContractChunk.embedding.l2_distance(query_embedding)
+        ).limit(limit)
+        
+        results = await session.exec(stmt)
+        return results.all()
+
+    async def ingest_policy(self, session: Session, policy_id: UUID, content: str):
+        """
+        Process a policy text: split, embed, and store chunks.
+        """
+        chunks = self._split_text(content)
+        logger.info(f"Splitting policy {policy_id} into {len(chunks)} chunks.")
+
+        for i, chunk_text in enumerate(chunks):
+            try:
+                embedding = await self.llm.generate_embedding(chunk_text)
+                db_chunk = PolicyChunk(
+                    policy_id=policy_id,
+                    chunk_index=i,
+                    content=chunk_text,
+                    embedding=embedding
+                )
+                session.add(db_chunk)
+            except Exception as e:
+                logger.error(f"Failed to embed chunk {i} for policy {policy_id}: {e}")
+                raise e
+        
+        await session.commit()
+
+    async def search_policies(self, session: Session, query: str, limit: int = 5) -> List[PolicyChunk]:
+        """
+        Semantic search for policy chunks.
+        """
+        query_embedding = await self.llm.generate_embedding(query)
+        
+        stmt = select(PolicyChunk).order_by(
+            PolicyChunk.embedding.l2_distance(query_embedding)
         ).limit(limit)
         
         results = await session.exec(stmt)

@@ -14,6 +14,15 @@ class ContractChunk(SQLModel, table=True):
     
     contract: "Contract" = Relationship(back_populates="chunks")
 
+class PolicyChunk(SQLModel, table=True):
+    id: UUID = Field(default_factory=uuid4, primary_key=True)
+    policy_id: UUID = Field(foreign_key="policy.id")
+    chunk_index: int
+    content: str
+    embedding: List[float] = Field(sa_column=Column(Vector(1536)))
+
+    policy: "Policy" = Relationship(back_populates="chunks")
+
 class Supplier(SQLModel, table=True):
     id: UUID = Field(default_factory=uuid4, primary_key=True)
     name: str = Field(index=True)
@@ -30,6 +39,8 @@ class Policy(SQLModel, table=True):
     version: str
     text_content: str
     is_active: bool = True
+    
+    chunks: List["PolicyChunk"] = Relationship(back_populates="policy")
 
 class Contract(SQLModel, table=True):
     id: UUID = Field(default_factory=uuid4, primary_key=True)
