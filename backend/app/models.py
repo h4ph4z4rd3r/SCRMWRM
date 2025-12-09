@@ -2,6 +2,17 @@ from datetime import datetime
 from typing import Optional, List
 from uuid import UUID, uuid4
 from sqlmodel import SQLModel, Field, Relationship
+from pgvector.sqlalchemy import Vector
+from sqlalchemy import Column
+
+class ContractChunk(SQLModel, table=True):
+    id: UUID = Field(default_factory=uuid4, primary_key=True)
+    contract_id: UUID = Field(foreign_key="contract.id")
+    chunk_index: int
+    content: str
+    embedding: List[float] = Field(sa_column=Column(Vector(1536)))  # dimensions depend on model
+    
+    contract: "Contract" = Relationship(back_populates="chunks")
 
 class Supplier(SQLModel, table=True):
     id: UUID = Field(default_factory=uuid4, primary_key=True)
@@ -30,6 +41,7 @@ class Contract(SQLModel, table=True):
     
     supplier: Optional[Supplier] = Relationship(back_populates="contracts")
     negotiations: List["Negotiation"] = Relationship(back_populates="contract")
+    chunks: List["ContractChunk"] = Relationship(back_populates="contract")
 
 class Negotiation(SQLModel, table=True):
     id: UUID = Field(default_factory=uuid4, primary_key=True)

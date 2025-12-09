@@ -30,3 +30,10 @@ class AbstractLLMClient(ABC):
         Generate a structured JSON response enforcing the given schema.
         """
         pass
+
+    @abstractmethod
+    async def generate_embedding(self, text: str) -> List[float]:
+        """
+        Generate a vector embedding for the given text.
+        """
+        pass

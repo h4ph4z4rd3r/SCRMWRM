@@ -73,3 +73,26 @@ class BedrockClient(AbstractLLMClient):
         except json.JSONDecodeError:
             logger.error(f"Failed to parse JSON from Bedrock response: {text_response}")
             raise ValueError("LLM failed to generate valid JSON")
+
+    async def generate_embedding(self, text: str) -> List[float]:
+        # Using Titan Embeddings v1 by default for embeddings
+        embedding_model_id = "amazon.titan-embed-text-v1"
+        
+        body = json.dumps({
+            "inputText": text
+        })
+        
+        try:
+            response = self.client.invoke_model(
+                modelId=embedding_model_id,
+                body=body,
+                contentType="application/json",
+                accept="application/json"
+            )
+            
+            response_body = json.loads(response.get("body").read())
+            return response_body.get("embedding")
+            
+        except Exception as e:
+            logger.error(f"Error generating embedding with Bedrock ({embedding_model_id}): {e}")
+            raise

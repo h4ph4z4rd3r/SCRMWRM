@@ -69,3 +69,14 @@ class MistralClient(AbstractLLMClient):
         except Exception as e:
             logger.error(f"Error generating JSON with Mistral: {e}")
             raise
+
+    async def generate_embedding(self, text: str) -> List[float]:
+        try:
+            resp = self.client.embeddings.create(
+                model="mistral-embed",
+                inputs=[text]
+            )
+            return resp.data[0].embedding
+        except Exception as e:
+            logger.error(f"Error generating embedding with Mistral: {e}")
+            raise
