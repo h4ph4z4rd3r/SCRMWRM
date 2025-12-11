@@ -24,6 +24,13 @@ class Settings(BaseSettings):
     MISTRAL_API_KEY: str | None = None
     MISTRAL_MODEL_ID: str = "mistral-large-latest"
 
+    # Supplier Intelligence
+    SUPPLIER_DATA_PROVIDER: str = "mock" # mock, dnb, newsapi
+    NEWS_API_KEY: str | None = None
+
+    # Agency/Autonomy Settings
+    AGENCY_LEVEL: str = "MEDIUM" # STRICT, MEDIUM, AUTONOMOUS
+
     # OpenAI (Legacy/Global)
     OPENAI_API_KEY: str = ""
 

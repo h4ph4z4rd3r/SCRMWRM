@@ -13,3 +13,8 @@ httpx
 pypdf
 python-multipart
 pytest-mock
+langgraph
+langchain
+openai
+tiktoken
+python-multipart

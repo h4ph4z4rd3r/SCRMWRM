@@ -23,6 +23,40 @@ class PolicyChunk(SQLModel, table=True):
 
     policy: "Policy" = Relationship(back_populates="chunks")
 
+class SupplierRiskProfile(SQLModel, table=True):
+    id: UUID = Field(default_factory=uuid4, primary_key=True)
+    supplier_id: UUID = Field(foreign_key="supplier.id")
+    retrieved_at: datetime = Field(default_factory=datetime.utcnow)
+    
+    # Financials (D&B style)
+    financial_stress_score: int = Field(default=0, description="1-100 (1 is bad)")
+    credit_rating: str = Field(default="Unknown")
+    
+    # Reputation
+    news_sentiment_score: float = Field(default=0.0, description="-1.0 to 1.0")
+    adverse_media_count: int = Field(default=0)
+    
+    # Compliance
+    sanctions_flag: bool = Field(default=False)
+    sanctions_list_match: Optional[str] = None
+    
+    supplier: "Supplier" = Relationship(back_populates="risk_profiles")
+
+class SupplierPerformance(SQLModel, table=True):
+    id: UUID = Field(default_factory=uuid4, primary_key=True)
+    supplier_id: UUID = Field(foreign_key="supplier.id")
+    period_start: datetime
+    period_end: datetime
+    
+    # KPI Scores (0-100)
+    quality_score: float = Field(default=0.0, description="Defect rate, adherence to specs")
+    delivery_score: float = Field(default=0.0, description="On-time delivery %")
+    cost_score: float = Field(default=0.0, description="Price variance / Savings")
+    
+    overall_score: float = Field(default=0.0)
+    
+    supplier: "Supplier" = Relationship(back_populates="performance_reports")
+
 class Supplier(SQLModel, table=True):
     id: UUID = Field(default_factory=uuid4, primary_key=True)
     name: str = Field(index=True)
@@ -32,6 +66,8 @@ class Supplier(SQLModel, table=True):
     created_at: datetime = Field(default_factory=datetime.utcnow)
     
     contracts: List["Contract"] = Relationship(back_populates="supplier")
+    risk_profiles: List["SupplierRiskProfile"] = Relationship(back_populates="supplier")
+    performance_reports: List["SupplierPerformance"] = Relationship(back_populates="supplier")
 
 class Policy(SQLModel, table=True):
     id: UUID = Field(default_factory=uuid4, primary_key=True)

@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from app.policy.models import PolicyDocument
+from app.models import Policy
 
 router = APIRouter(prefix="/policy", tags=["policy"])
 
