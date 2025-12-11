@@ -1,16 +1,24 @@
 from datetime import datetime
-from typing import Optional, List
+from typing import Optional, List, Any
 from uuid import UUID, uuid4
 from sqlmodel import SQLModel, Field, Relationship
-from pgvector.sqlalchemy import Vector
-from sqlalchemy import Column
+from sqlalchemy import Column, JSON
+
+# Dynamic Vector Type based on available drivers/config
+# Ideally we check settings, but simple try-import works for minimal dependencies
+try:
+    from pgvector.sqlalchemy import Vector
+    vector_type = Vector(1536)
+except ImportError:
+    vector_type = JSON # Fallback for SQLite to avoid crashes on model definition
 
 class ContractChunk(SQLModel, table=True):
     id: UUID = Field(default_factory=uuid4, primary_key=True)
     contract_id: UUID = Field(foreign_key="contract.id")
     chunk_index: int
     content: str
-    embedding: List[float] = Field(sa_column=Column(Vector(1536)))  # dimensions depend on model
+    # If using SQLite, this will just be a JSON field (no similarity search)
+    embedding: List[float] = Field(sa_column=Column(vector_type))  
     
     contract: "Contract" = Relationship(back_populates="chunks")
 
@@ -19,7 +27,7 @@ class PolicyChunk(SQLModel, table=True):
     policy_id: UUID = Field(foreign_key="policy.id")
     chunk_index: int
     content: str
-    embedding: List[float] = Field(sa_column=Column(Vector(1536)))
+    embedding: List[float] = Field(sa_column=Column(vector_type))
 
     policy: "Policy" = Relationship(back_populates="chunks")
 

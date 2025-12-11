@@ -6,7 +6,9 @@ from app.core.config import settings
 # Construct the Async Database URL
 # Note: In a real scenario, this would come from settings. 
 # For now, we fallback to a default if not set, or raise error.
-DATABASE_URL = settings.SQLALCHEMY_DATABASE_URI or "postgresql+asyncpg://postgres:postgres@localhost/negotiator"
+# Construct the Async Database URL
+# Use SQLite as default fallback if no ENV is set, to ensure it works without Docker
+DATABASE_URL = settings.SQLALCHEMY_DATABASE_URI or "sqlite+aiosqlite:///./negotiator.db"
 
 engine = create_async_engine(DATABASE_URL, echo=True, future=True)
 
@@ -22,5 +24,9 @@ async def init_db():
         # Import models so SQLModel knows about them
         from app import models
         from sqlalchemy import text
-        await conn.execute(text("CREATE EXTENSION IF NOT EXISTS vector"))
+        
+        # Only try to create extension for Postgres
+        if "postgresql" in DATABASE_URL:
+            await conn.execute(text("CREATE EXTENSION IF NOT EXISTS vector"))
+            
         await conn.run_sync(SQLModel.metadata.create_all)

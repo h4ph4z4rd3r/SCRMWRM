@@ -10,7 +10,7 @@ The backend runs the LangGraph agent and the API.
 cd backend
 # Ensure virtualenv is active
 source ../.venv/bin/activate
-# Run FastAPI
+# Run FastAPI (Defaults to SQLite for local dev)
 uvicorn app.main:app --reload --port 8000
 ```
 
