@@ -1,4 +1,4 @@
-from typing import Dict, Any
+from typing import Dict, Any, List
 from uuid import UUID
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
@@ -114,7 +114,9 @@ async def get_thread_state(thread_id: str) -> Dict[str, Any]:
     try:
         snapshot = negotiation_graph.get_state(config)
         if not snapshot.values:
-            return {"status": "empty", "messages": []}
+            # If no LangGraph state, check if we have SQL data to at least show the page
+            # For now, return empty-ish state so UI doesn't 404
+            return {"status": "inactive", "messages": []}
             
         return {
             "status": "active" if not snapshot.next else "paused",
@@ -127,4 +129,44 @@ async def get_thread_state(thread_id: str) -> Dict[str, Any]:
             }
         }
     except Exception as e:
+        # If ID is invalid or other error
         raise HTTPException(status_code=500, detail=str(e))
+
+@router.get("/negotiations")
+async def list_negotiations() -> List[Dict[str, Any]]:
+    """
+    Lists all active negotiations from the database.
+    """
+    from app.database import get_session
+    from app.models import Negotiation
+    from sqlalchemy.future import select
+    from sqlalchemy.orm import selectinload
+    
+    # Manually creating session since we are not using Depends() in this file yet usually
+    # But better to just use async context manager for simplicity here since 
+    # we didn't set up full Dependency Injection in this file's signature
+    from app.database import engine
+    from sqlalchemy.orm import sessionmaker
+    from sqlalchemy.ext.asyncio import AsyncSession
+    
+    async_session = sessionmaker(engine, class_=AsyncSession, expire_on_commit=False)
+    async with async_session() as session:
+        # Fetch negotiations with related Contract and Supplier
+        stmt = select(Negotiation).options(
+            selectinload(Negotiation.contract).selectinload(Contract.supplier)
+        )
+        result = await session.execute(stmt)
+        negotiations = result.scalars().all()
+        
+        return [
+            {
+                "id": str(n.id), # This maps to thread_id
+                "supplier": n.contract.supplier.name if n.contract and n.contract.supplier else "Unknown",
+                "contract_title": n.contract.title if n.contract else "Untitled",
+                "status": n.status,
+                "strategy": n.strategy,
+                "risk_score": n.contract.supplier.risk_score if n.contract and n.contract.supplier else 0.0,
+                "last_update": n.created_at.isoformat()
+            }
+            for n in negotiations
+        ]

@@ -1,0 +1,10 @@
+id: "datavault-dpa"
+name: "DataVault Corp"
+style: "Stubborn"
+negotiation_tone: "cautious and defensive"
+goals:
+  - "Limit liability exposure (Cap <= $10k)"
+  - "Avoid unlimited indemnity"
+constraints:
+  - "Must include Force Majeure clause"
+  - "Cannot accept jurisdiction other than Delaware"

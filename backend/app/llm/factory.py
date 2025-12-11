@@ -20,6 +20,9 @@ class LLMFactory:
                 api_key=os.getenv("MISTRAL_API_KEY", ""),
                 model_id=os.getenv("MISTRAL_MODEL_ID", "mistral-large-latest")
             )
+        elif provider == "openai":
+            from .openai_client import OpenAIClient
+            return OpenAIClient()
         else:
             raise ValueError(f"Unsupported LLM_PROVIDER: {provider}")
 

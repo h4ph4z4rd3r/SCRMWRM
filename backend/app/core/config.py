@@ -12,7 +12,7 @@ class Settings(BaseSettings):
     SQLALCHEMY_DATABASE_URI: str | None = None
 
     # LLM Settings
-    LLM_PROVIDER: str = "aws"  # aws or mistral
+    LLM_PROVIDER: str = "aws"  # aws, mistral, or openai
     
     # AWS Bedrock
     AWS_REGION: str = "eu-central-1"

@@ -41,3 +41,12 @@ npm run dev
     *   A "Proposed Strategy" box will appear in the chat.
     *   Click **Approve** to resume the Agent.
 5.  The Agent will draft the response and the chat will update.
+
+## 4. Release 2: Simulation Mode (New!)
+
+To test the agent against an AI opponent:
+1.  Navigate to a negotiation (e.g., "TechFlow SaaS").
+2.  In the Left Panel, look for **Simulation Control**.
+3.  Click **Simulate Supplier Turn**.
+4.  The system will use the `SupplierAgent` (mocked as TechFlow) to read your latest proposal and generate a realistic counter-offer or acceptance.
+

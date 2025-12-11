@@ -73,11 +73,13 @@ from app.policy import api as policy
 from app.supplier import api as supplier
 from app.contract import api as contract
 from app.agent import api as agent
+from app.simulation import api as simulation
 
 app.include_router(policy.router, prefix="/api/v1/policy", tags=["policy"])
 app.include_router(supplier.router, prefix="/api/v1/supplier", tags=["supplier"])
 app.include_router(contract.router, prefix="/api/v1/contract", tags=["contract"])
 app.include_router(agent.router, prefix="/api/v1/agent", tags=["agent"])
+app.include_router(simulation.router, prefix="/api/v1/simulation", tags=["simulation"])
 
 if __name__ == "__main__":
     import uvicorn

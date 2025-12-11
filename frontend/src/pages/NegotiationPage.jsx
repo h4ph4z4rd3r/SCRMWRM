@@ -68,11 +68,37 @@ export default function NegotiationPage() {
         onSuccess: () => queryClient.invalidateQueries(['thread', threadId])
     });
 
+    // 4. Simulate Supplier Turn Mutation
+    const simulateTurn = useMutation({
+        mutationFn: async () => {
+            // 1. Get Simulation Response
+            const history = messages.map(m => ({
+                sender: m.role === 'user' ? 'supplier' : 'buyer', // Role mapping: User in UI is Buyer/Agent
+                content: m.content
+            }));
+            const res = await api.post('/simulation/turn', {
+                persona_id: "techflow-saas", // Hardcoded for Demo R2
+                conversation_history: history,
+                latest_proposal: messages[messages.length - 1]?.content || "Please provide your initial draft."
+            });
+
+            // 2. Feed it back as a message from Supplier
+            // Note: In a real system, the Supplier Agent would call the API directly.
+            // Here we proxy it via frontend to show the simulation flow.
+            await api.post('/agent/negotiate', {
+                contract_id: "00000000-0000-0000-0000-000000000000",
+                supplier_id: "00000000-0000-0000-0000-000000000000",
+                clause_text: res.data.response,
+                thread_id: threadId
+            });
+        },
+        onSuccess: () => {
+            queryClient.invalidateQueries(['thread', threadId]);
+        }
+    });
+
     // Derived State
     const messages = threadState?.messages || [];
-    // For MVP, we map Agent's "reasoning" or "redline" outputs to chat messages locally if not explicitly in message list,
-    // OR we rely on the Backend to append them. Currently Backend (phase 4) just returns state.
-    // We need to visualize the current state as a "Pending Message" if paused.
 
     const isPaused = threadState?.status === 'paused';
     const pendingContext = threadState?.current_context;
@@ -93,6 +119,27 @@ export default function NegotiationPage() {
                         <p className="text-xs text-muted-foreground">News Sentiment: Negative</p>
                     </div>
                 </div>
+
+                {/* Simulation Controls (Release 2) */}
+                <div className="border-t pt-6">
+                    <h3 className="text-sm font-semibold mb-3 flex items-center gap-2">
+                        <Bot size={14} className="text-blue-500" />
+                        Simulation Control
+                    </h3>
+                    <div className="p-4 bg-blue-500/5 rounded-lg border border-blue-500/10 space-y-3">
+                        <p className="text-xs text-muted-foreground">
+                            Simulate the counter-party (TechFlow SaaS) response to your last message.
+                        </p>
+                        <button
+                            onClick={() => simulateTurn.mutate()}
+                            disabled={simulateTurn.isPending || isPaused}
+                            className="w-full bg-blue-600 text-white h-8 rounded text-xs font-medium hover:bg-blue-700 transition-colors flex items-center justify-center gap-2"
+                        >
+                            {simulateTurn.isPending ? <Loader2 size={12} className="animate-spin" /> : <Play size={12} />}
+                            Simulate Supplier Turn
+                        </button>
+                    </div>
+                </div>
             </aside>
 
             {/* Center Pane: The Timeline */}
@@ -102,7 +149,9 @@ export default function NegotiationPage() {
                         Negotiation #{threadId.substring(0, 6)}
                         {isLoading && <Loader2 className="animate-spin w-3 h-3 text-muted-foreground" />}
                     </h1>
-                    <span className="text-xs bg-yellow-500/10 text-yellow-500 px-2 py-1 rounded border border-yellow-500/20">Agency: Medium</span>
+                    <div className="flex items-center gap-3">
+                        <span className="text-xs bg-yellow-500/10 text-yellow-500 px-2 py-1 rounded border border-yellow-500/20">Agency: Medium</span>
+                    </div>
                 </header>
 
                 <div className="flex-1 overflow-y-auto p-6 space-y-6 pb-32">

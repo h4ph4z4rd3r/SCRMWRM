@@ -1,0 +1,10 @@
+id: "techflow-saas"
+name: "TechFlow Solutions"
+style: "Aggressive"
+negotiation_tone: "authoritative but professional"
+goals:
+  - "Maintain standard 3-year term (revenue stability)"
+  - "Maximize annual uplift cap (seek 7% or more)"
+constraints:
+  - "Cannot accept termination for convenience"
+  - "Must have auto-renewal clause"
