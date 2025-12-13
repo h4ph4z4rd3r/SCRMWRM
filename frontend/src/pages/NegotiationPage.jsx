@@ -103,6 +103,9 @@ export default function NegotiationPage() {
     const isPaused = threadState?.status === 'paused';
     const pendingContext = threadState?.current_context;
 
+    // Check if any mutation is pending (Processing)
+    const isProcessing = sendMessage.isPending || resumeWorkflow.isPending || simulateTurn.isPending;
+
     return (
         <div className="flex h-screen overflow-hidden bg-background animate-in fade-in">
 
@@ -159,6 +162,19 @@ export default function NegotiationPage() {
                     {messages.map((m, idx) => (
                         <MessageBubble key={idx} role={m.role} content={m.content} />
                     ))}
+
+                    {/* Thinking Indicator */}
+                    {isProcessing && (
+                        <div className="flex gap-3 animate-in fade-in slide-in-from-bottom-2 flex-row">
+                            <div className="w-8 h-8 rounded-full flex items-center justify-center shrink-0 border shadow-sm bg-primary text-primary-foreground">
+                                <Bot size={16} />
+                            </div>
+                            <div className="max-w-[80%] rounded-lg p-4 text-sm bg-muted text-muted-foreground italic flex items-center gap-2">
+                                <Loader2 size={14} className="animate-spin" />
+                                Analyzing...
+                            </div>
+                        </div>
+                    )}
 
                     {/* Logic: If Pending Approval, show the Decision Block */}
                     {isPaused && pendingContext && (

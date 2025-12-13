@@ -1,0 +1,144 @@
+INFO:     Will watch for changes in these directories: ['/home/vboxuser/Documents/SCRMWRM/backend']
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+INFO:     Started reloader process [26881] using WatchFiles
+INFO:     Started server process [26885]
+INFO:     Waiting for application startup.
+2025-12-13 15:19:25,355 - nexus_core - INFO - Nexus Core: System Initializing...
+2025-12-13 15:19:25,358 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-12-13 15:19:25,358 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2025-12-13 15:19:25,359 INFO sqlalchemy.engine.Engine PRAGMA main.table_info("contractchunk")
+2025-12-13 15:19:25,359 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("contractchunk")
+2025-12-13 15:19:25,359 INFO sqlalchemy.engine.Engine [raw sql] ()
+2025-12-13 15:19:25,359 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2025-12-13 15:19:25,361 INFO sqlalchemy.engine.Engine PRAGMA main.table_info("policychunk")
+2025-12-13 15:19:25,361 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("policychunk")
+2025-12-13 15:19:25,361 INFO sqlalchemy.engine.Engine [raw sql] ()
+2025-12-13 15:19:25,361 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2025-12-13 15:19:25,362 INFO sqlalchemy.engine.Engine PRAGMA main.table_info("supplierriskprofile")
+2025-12-13 15:19:25,362 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("supplierriskprofile")
+2025-12-13 15:19:25,362 INFO sqlalchemy.engine.Engine [raw sql] ()
+2025-12-13 15:19:25,362 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2025-12-13 15:19:25,365 INFO sqlalchemy.engine.Engine PRAGMA main.table_info("supplierperformance")
+2025-12-13 15:19:25,365 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("supplierperformance")
+2025-12-13 15:19:25,365 INFO sqlalchemy.engine.Engine [raw sql] ()
+2025-12-13 15:19:25,365 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2025-12-13 15:19:25,366 INFO sqlalchemy.engine.Engine PRAGMA main.table_info("supplier")
+2025-12-13 15:19:25,366 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("supplier")
+2025-12-13 15:19:25,367 INFO sqlalchemy.engine.Engine [raw sql] ()
+2025-12-13 15:19:25,367 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2025-12-13 15:19:25,369 INFO sqlalchemy.engine.Engine PRAGMA main.table_info("policy")
+2025-12-13 15:19:25,369 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("policy")
+2025-12-13 15:19:25,369 INFO sqlalchemy.engine.Engine [raw sql] ()
+2025-12-13 15:19:25,369 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2025-12-13 15:19:25,370 INFO sqlalchemy.engine.Engine PRAGMA main.table_info("contract")
+2025-12-13 15:19:25,370 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("contract")
+2025-12-13 15:19:25,370 INFO sqlalchemy.engine.Engine [raw sql] ()
+2025-12-13 15:19:25,370 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2025-12-13 15:19:25,372 INFO sqlalchemy.engine.Engine PRAGMA main.table_info("negotiation")
+2025-12-13 15:19:25,372 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("negotiation")
+2025-12-13 15:19:25,372 INFO sqlalchemy.engine.Engine [raw sql] ()
+2025-12-13 15:19:25,372 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2025-12-13 15:19:25,373 INFO sqlalchemy.engine.Engine PRAGMA main.table_info("negotiationmessage")
+2025-12-13 15:19:25,373 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("negotiationmessage")
+2025-12-13 15:19:25,373 INFO sqlalchemy.engine.Engine [raw sql] ()
+2025-12-13 15:19:25,373 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2025-12-13 15:19:25,377 INFO sqlalchemy.engine.Engine COMMIT
+2025-12-13 15:19:25,377 - sqlalchemy.engine.Engine - INFO - COMMIT
+INFO:     Application startup complete.
+INFO:     127.0.0.1:39404 - "GET /api/v1/agent/thread/a1c00dd3-02e2-4335-a383-9d69c2682587 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39404 - "GET /api/v1/agent/thread/a1c00dd3-02e2-4335-a383-9d69c2682587 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39404 - "GET /api/v1/agent/thread/a1c00dd3-02e2-4335-a383-9d69c2682587 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39404 - "GET /api/v1/agent/thread/a1c00dd3-02e2-4335-a383-9d69c2682587 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39404 - "GET /api/v1/agent/thread/a1c00dd3-02e2-4335-a383-9d69c2682587 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39404 - "GET /api/v1/agent/thread/a1c00dd3-02e2-4335-a383-9d69c2682587 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39404 - "GET /api/v1/agent/thread/a1c00dd3-02e2-4335-a383-9d69c2682587 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39404 - "GET /api/v1/agent/thread/a1c00dd3-02e2-4335-a383-9d69c2682587 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39404 - "GET /api/v1/agent/thread/a1c00dd3-02e2-4335-a383-9d69c2682587 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39404 - "GET /api/v1/agent/thread/a1c00dd3-02e2-4335-a383-9d69c2682587 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39404 - "GET /api/v1/agent/thread/a1c00dd3-02e2-4335-a383-9d69c2682587 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39404 - "GET /api/v1/agent/thread/a1c00dd3-02e2-4335-a383-9d69c2682587 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39404 - "GET /api/v1/agent/thread/a1c00dd3-02e2-4335-a383-9d69c2682587 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39404 - "GET /api/v1/agent/thread/a1c00dd3-02e2-4335-a383-9d69c2682587 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39404 - "GET /api/v1/agent/thread/a1c00dd3-02e2-4335-a383-9d69c2682587 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39404 - "GET /api/v1/agent/thread/a1c00dd3-02e2-4335-a383-9d69c2682587 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39404 - "GET /api/v1/agent/thread/a1c00dd3-02e2-4335-a383-9d69c2682587 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39404 - "GET /api/v1/agent/thread/a1c00dd3-02e2-4335-a383-9d69c2682587 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39404 - "GET /api/v1/agent/thread/a1c00dd3-02e2-4335-a383-9d69c2682587 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39404 - "GET /api/v1/agent/thread/a1c00dd3-02e2-4335-a383-9d69c2682587 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39404 - "GET /api/v1/agent/thread/a1c00dd3-02e2-4335-a383-9d69c2682587 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39404 - "GET /api/v1/agent/thread/a1c00dd3-02e2-4335-a383-9d69c2682587 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39404 - "GET /api/v1/agent/thread/a1c00dd3-02e2-4335-a383-9d69c2682587 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39404 - "GET /api/v1/agent/thread/a1c00dd3-02e2-4335-a383-9d69c2682587 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39404 - "GET /api/v1/agent/thread/a1c00dd3-02e2-4335-a383-9d69c2682587 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39404 - "GET /api/v1/agent/thread/a1c00dd3-02e2-4335-a383-9d69c2682587 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39404 - "GET /api/v1/agent/thread/a1c00dd3-02e2-4335-a383-9d69c2682587 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39404 - "GET /api/v1/agent/thread/a1c00dd3-02e2-4335-a383-9d69c2682587 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39404 - "GET /api/v1/agent/thread/a1c00dd3-02e2-4335-a383-9d69c2682587 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39404 - "GET /api/v1/agent/thread/a1c00dd3-02e2-4335-a383-9d69c2682587 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39404 - "OPTIONS /api/v1/agent/negotiate HTTP/1.1" 200 OK
+--- Node: Policy Analysis ---
+2025-12-13 15:20:26,388 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-12-13 15:20:26,388 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2025-12-13 15:20:26,408 INFO sqlalchemy.engine.Engine SELECT policy.id, policy.name, policy.version, policy.text_content, policy.is_active 
+FROM policy
+ LIMIT ? OFFSET ?
+2025-12-13 15:20:26,408 - sqlalchemy.engine.Engine - INFO - SELECT policy.id, policy.name, policy.version, policy.text_content, policy.is_active 
+FROM policy
+ LIMIT ? OFFSET ?
+2025-12-13 15:20:26,408 INFO sqlalchemy.engine.Engine [generated in 0.00031s] (1, 0)
+2025-12-13 15:20:26,408 - sqlalchemy.engine.Engine - INFO - [generated in 0.00031s] (1, 0)
+2025-12-13 15:20:26,412 INFO sqlalchemy.engine.Engine ROLLBACK
+2025-12-13 15:20:26,412 - sqlalchemy.engine.Engine - INFO - ROLLBACK
+--- Node: Risk Analysis ---
+2025-12-13 15:20:26,433 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-12-13 15:20:26,433 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2025-12-13 15:20:26,436 INFO sqlalchemy.engine.Engine SELECT supplier.id AS supplier_id, supplier.name AS supplier_name, supplier.domain AS supplier_domain, supplier.lei AS supplier_lei, supplier.risk_score AS supplier_risk_score, supplier.created_at AS supplier_created_at 
+FROM supplier 
+WHERE supplier.id = ?
+2025-12-13 15:20:26,436 - sqlalchemy.engine.Engine - INFO - SELECT supplier.id AS supplier_id, supplier.name AS supplier_name, supplier.domain AS supplier_domain, supplier.lei AS supplier_lei, supplier.risk_score AS supplier_risk_score, supplier.created_at AS supplier_created_at 
+FROM supplier 
+WHERE supplier.id = ?
+2025-12-13 15:20:26,438 INFO sqlalchemy.engine.Engine [generated in 0.00268s] ('00000000000000000000000000000000',)
+2025-12-13 15:20:26,438 - sqlalchemy.engine.Engine - INFO - [generated in 0.00268s] ('00000000000000000000000000000000',)
+2025-12-13 15:20:26,455 - app.supplier.intelligence - WARNING - Supplier 00000000-0000-0000-0000-000000000000 not found. Using Mock Profile for resilience.
+2025-12-13 15:20:26,457 INFO sqlalchemy.engine.Engine ROLLBACK
+2025-12-13 15:20:26,457 - sqlalchemy.engine.Engine - INFO - ROLLBACK
+--- Node: Strategy Synthesis ---
+INFO:     127.0.0.1:39404 - "GET /api/v1/agent/thread/a1c00dd3-02e2-4335-a383-9d69c2682587 HTTP/1.1" 200 OK
+--- Node: Human Gatekeeper ---
+[MEDIUM] Pausing for Human Review...
+INFO:     127.0.0.1:45018 - "POST /api/v1/agent/negotiate HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45018 - "GET /api/v1/agent/thread/a1c00dd3-02e2-4335-a383-9d69c2682587 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45018 - "GET /api/v1/agent/thread/a1c00dd3-02e2-4335-a383-9d69c2682587 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45018 - "GET /api/v1/agent/thread/a1c00dd3-02e2-4335-a383-9d69c2682587 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45018 - "OPTIONS /api/v1/agent/resume HTTP/1.1" 200 OK
+--- Node: Human Gatekeeper ---
+[MEDIUM] Pausing for Human Review...
+--- Node: Drafting ---
+INFO:     127.0.0.1:39404 - "POST /api/v1/agent/resume HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39404 - "GET /api/v1/agent/thread/a1c00dd3-02e2-4335-a383-9d69c2682587 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39404 - "GET /api/v1/agent/thread/a1c00dd3-02e2-4335-a383-9d69c2682587 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39404 - "GET /api/v1/agent/thread/a1c00dd3-02e2-4335-a383-9d69c2682587 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39404 - "GET /api/v1/agent/thread/a1c00dd3-02e2-4335-a383-9d69c2682587 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39404 - "GET /api/v1/agent/thread/a1c00dd3-02e2-4335-a383-9d69c2682587 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39404 - "GET /api/v1/agent/thread/a1c00dd3-02e2-4335-a383-9d69c2682587 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39404 - "GET /api/v1/agent/thread/a1c00dd3-02e2-4335-a383-9d69c2682587 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39404 - "GET /api/v1/agent/thread/a1c00dd3-02e2-4335-a383-9d69c2682587 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39404 - "GET /api/v1/agent/thread/a1c00dd3-02e2-4335-a383-9d69c2682587 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39404 - "GET /api/v1/agent/thread/a1c00dd3-02e2-4335-a383-9d69c2682587 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39404 - "GET /api/v1/agent/thread/a1c00dd3-02e2-4335-a383-9d69c2682587 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39404 - "GET /api/v1/agent/thread/a1c00dd3-02e2-4335-a383-9d69c2682587 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39404 - "GET /api/v1/agent/thread/a1c00dd3-02e2-4335-a383-9d69c2682587 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39404 - "GET /api/v1/agent/thread/a1c00dd3-02e2-4335-a383-9d69c2682587 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39404 - "GET /api/v1/agent/thread/a1c00dd3-02e2-4335-a383-9d69c2682587 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39404 - "GET /api/v1/agent/thread/a1c00dd3-02e2-4335-a383-9d69c2682587 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39404 - "GET /api/v1/agent/thread/a1c00dd3-02e2-4335-a383-9d69c2682587 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39404 - "GET /api/v1/agent/thread/a1c00dd3-02e2-4335-a383-9d69c2682587 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39404 - "GET /api/v1/agent/thread/a1c00dd3-02e2-4335-a383-9d69c2682587 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39404 - "GET /api/v1/agent/thread/a1c00dd3-02e2-4335-a383-9d69c2682587 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39404 - "GET /api/v1/agent/thread/a1c00dd3-02e2-4335-a383-9d69c2682587 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39404 - "GET /api/v1/agent/thread/a1c00dd3-02e2-4335-a383-9d69c2682587 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39404 - "GET /api/v1/agent/thread/a1c00dd3-02e2-4335-a383-9d69c2682587 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39404 - "GET /api/v1/agent/thread/a1c00dd3-02e2-4335-a383-9d69c2682587 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39404 - "GET /api/v1/agent/thread/a1c00dd3-02e2-4335-a383-9d69c2682587 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39404 - "GET /api/v1/agent/thread/a1c00dd3-02e2-4335-a383-9d69c2682587 HTTP/1.1" 200 OK

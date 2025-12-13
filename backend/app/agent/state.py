@@ -1,4 +1,5 @@
-from typing import TypedDict, List, Optional
+from typing import TypedDict, List, Optional, Annotated
+import operator
 from uuid import UUID
 from app.llm import LLMMessage
 
@@ -13,7 +14,7 @@ class NegotiationState(TypedDict):
     risk_profile: Optional[dict]
     
     # Chat History
-    messages: List[LLMMessage]
+    messages: Annotated[List[LLMMessage], operator.add]
     
     # Decisions
     strategy_decision: Optional[str] # "ACCEPT", "REJECT", "COUNTER", "NEEDS_HUMAN"

@@ -30,8 +30,8 @@ async def policy_analysis_node(state: NegotiationState) -> Dict[str, Any]:
         # For now, we fetch a "Standard" policy or the first active one.
         # This is a simplification. In reality, we'd use RAG to find the policy.
         from sqlmodel import select
-        result = await session.exec(select(Policy).limit(1))
-        policy = result.first()
+        result = await session.execute(select(Policy).limit(1))
+        policy = result.scalars().first()
         
         if not policy:
             return {"policy_analysis": {"status": "SKIPPED", "reasoning": "No active policy found"}}
@@ -76,8 +76,8 @@ async def strategy_node(state: NegotiationState) -> Dict[str, Any]:
     
     user_content = (
         f"CLAUSE: {clause}\n"
-        f"POLICY REPORT: {json.dumps(policy_result)}\n"
-        f"SUPPLIER RISK: {json.dumps(risk_profile)}\n"
+        f"POLICY REPORT: {json.dumps(policy_result, default=str)}\n"
+        f"SUPPLIER RISK: {json.dumps(risk_profile, default=str)}\n"
     )
     
     messages = [LLMMessage(role="user", content=user_content)]
@@ -105,9 +105,18 @@ async def drafting_node(state: NegotiationState) -> Dict[str, Any]:
     """
     print("--- Node: Drafting ---")
     
+    if state.get("human_approval_status") == "REJECTED":
+        return {
+            "proposed_redline": None,
+            "messages": [LLMMessage(role="agent", content="Process halted: Strategy rejected by user.")]
+        }
+
     decision = state.get("strategy_decision")
     if decision not in ["COUNTER", "REJECT"]:
-        return {"proposed_redline": None}
+        return {
+            "proposed_redline": None,
+            "messages": [LLMMessage(role="agent", content=f"Result: {decision}\nReasoning: {state.get('reasoning')}")]
+        }
         
     clause = state["current_clause_text"]
     reasoning = state["reasoning"]
@@ -119,7 +128,10 @@ async def drafting_node(state: NegotiationState) -> Dict[str, Any]:
     # Just text generation here
     new_text = await llm.generate_response(messages, system_prompt=system_prompt)
     
-    return {"proposed_redline": new_text}
+    return {
+        "proposed_redline": new_text,
+        "messages": [LLMMessage(role="agent", content=f"Proposed Redline ({decision}):\n{new_text}\n\nReasoning: {reasoning}")]
+    }
 
 from langgraph.types import Command, interrupt
 from app.core.config import settings

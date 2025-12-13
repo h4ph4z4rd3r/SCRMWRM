@@ -5,8 +5,9 @@ from pydantic import BaseModel
 
 from app.agent.graph import negotiation_graph
 from app.agent.state import NegotiationState
+from app.llm import LLMMessage
 
-router = APIRouter(prefix="/agent", tags=["agent"])
+router = APIRouter(tags=["agent"])
 
 class NegotiationRequest(BaseModel):
     contract_id: str
@@ -27,12 +28,12 @@ async def start_negotiation(request: NegotiationRequest) -> Dict[str, Any]:
         "contract_id": request.contract_id,
         "supplier_id": request.supplier_id,
         "current_clause_text": request.clause_text,
-        "messages": [],
+        "messages": [LLMMessage(role="user", content=request.clause_text)],
         "policy_analysis": None,
         "risk_profile": None,
-        "strategy_decision": None,
-        "proposed_redline": None,
-        "reasoning": None,
+        # "strategy_decision": None,  <-- REMOVED to avoid overwriting if graph persists it differently or if it's not needed here
+        # "proposed_redline": None,
+        # "reasoning": None,
         "agency_level": "MEDIUM", # Default
         "human_approval_status": "PENDING"
     }
@@ -42,6 +43,16 @@ async def start_negotiation(request: NegotiationRequest) -> Dict[str, Any]:
         # ainvoke will run until it finishes OR hits an interrupt
         final_state = await negotiation_graph.ainvoke(initial_state, config=config)
         
+        # Check for soft interrupt (Paused)
+        snapshot = negotiation_graph.get_state(config)
+        if snapshot.next:
+            return {
+                "status": "paused",
+                "message": "Human approval required (Soft Stop).",
+                "next_step": snapshot.next,
+                "current_reasoning": snapshot.values.get("reasoning")
+            }
+
         return {
             "status": "completed",
             "strategy": final_state.get("strategy_decision"),
@@ -138,7 +149,7 @@ async def list_negotiations() -> List[Dict[str, Any]]:
     Lists all active negotiations from the database.
     """
     from app.database import get_session
-    from app.models import Negotiation
+    from app.models import Negotiation, Contract
     from sqlalchemy.future import select
     from sqlalchemy.orm import selectinload
     

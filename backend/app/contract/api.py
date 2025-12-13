@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-router = APIRouter(prefix="/contract", tags=["contract"])
+router = APIRouter(tags=["contract"])
 
 @router.get("/")
 async def list_contracts():

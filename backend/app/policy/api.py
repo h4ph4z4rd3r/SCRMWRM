@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 from app.models import Policy
 
-router = APIRouter(prefix="/policy", tags=["policy"])
+router = APIRouter(tags=["policy"])
 
 @router.get("/")
 async def list_policies():

@@ -6,7 +6,7 @@ from app.database import get_session
 from app.models import Supplier, SupplierPerformance
 from pydantic import BaseModel
 
-router = APIRouter(prefix="/supplier", tags=["supplier"])
+router = APIRouter(tags=["supplier"])
 
 class PerformanceCreate(BaseModel):
     period_start: datetime

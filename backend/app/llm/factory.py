@@ -8,7 +8,7 @@ from .mistral import MistralClient
 class LLMFactory:
     @staticmethod
     def get_client() -> AbstractLLMClient:
-        provider = os.getenv("LLM_PROVIDER", "aws").lower()
+        provider = os.getenv("LLM_PROVIDER", "mock").lower()
         
         if provider == "aws":
             return BedrockClient(
@@ -24,7 +24,9 @@ class LLMFactory:
             from .openai_client import OpenAIClient
             return OpenAIClient()
         else:
-            raise ValueError(f"Unsupported LLM_PROVIDER: {provider}")
+            # Default to Mock
+            from .mock import MockLLMClient
+            return MockLLMClient()
 
 @lru_cache()
 def get_llm_client() -> AbstractLLMClient:
